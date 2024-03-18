@@ -5,11 +5,18 @@ public:
         if (points.empty()) return 0;
 
         sort(points.begin(), points.end());
-
+        //The above line sorts the vector points in ascending order based on the default comparison operator for vectors.
+        //By default, this will sort the balloons based on their start points.
         int arrows = 1;
         int end = points[0][1];
 
         for (int i = 1; i < points.size(); ++i) {
+            //Inside the loop, we check if the start point of the current balloon is greater than the current end. 
+            //If it is, we increment arrows by 1 and update end to the end point of the current balloon. 
+            //This signifies that a new arrow is needed to burst the current balloon.
+            //If the start point of the current balloon is less than or equal to end,
+            //we update end to the minimum of the current end and the end point of the current balloon. 
+            //This accounts for overlapping balloons that can be burst with a single arrow.
             if (points[i][0] > end) {
                 arrows++;
                 end = points[i][1];
